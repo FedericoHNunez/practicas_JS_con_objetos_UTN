@@ -68,114 +68,129 @@ const productos = [
 */
 /* 1) 
 */
-
-    let idProducto = 2
-    const obtenerPorId = (id, productos) =>{
-        let resultado;
-        for (let producto of productos){
-            producto.id === id ? resultado = producto : null;
-        }
-        return resultado;
+console.log("1)--------------------obtenerPorId--------------------");
+let idProducto = 2
+const obtenerPorId = (id, productos) => {
+    let resultado;
+    for (let producto of productos) {
+        producto.id === id ? resultado = producto : null;
     }
-    mostrarProducto = producto => `${producto.titulo} con un de precio: ${producto.precio} y hay un de stock: ${producto.stock} unidades`;
-    
-    let productoId = obtenerPorId(idProducto, productos);
-    console.log (`El producto id ${idProducto} es: ${mostrarProducto(productoId)}`);
+    return resultado;
+}
+const mostrarProducto = producto => `${producto.titulo} con un de precio: ${producto.precio} y hay un de stock: ${producto.stock} unidades`;
 
-    //Alternativa con metodo find
-    const obtenerPorId1 = (id, productos) =>productos.find(producto => producto.id === id)
-    mostrarProducto1 = producto => `${producto.titulo} con un de precio: ${producto.precio} y hay un de stock: ${producto.stock} unidades`;
-    let productoId1 = obtenerPorId1(idProducto, productos);
-    console.log (`El producto id ${idProducto} es: ${mostrarProducto1(productoId1)} desde el metodo find`);
+let productoId = obtenerPorId(idProducto, productos);
+console.log(`El producto id ${idProducto} es: ${mostrarProducto(productoId)}`);
+
+//Alternativa con metodo find
+const obtenerPorId1 = (id, productos) => productos.find(producto => producto.id === id)
+let productoId1 = obtenerPorId1(idProducto, productos);
+console.log(`El producto id ${idProducto} es: ${mostrarProducto(productoId1)} desde el metodo find`);
 
 
 /*  2) 
  */
-        const existeCategoria = (categoria, productos) =>{
-            let existeciaCategoria= false;
-            for ( let producto of productos){
-                if (producto.categoria.includes(categoria)){
-                    existeciaCategoria = true;
-                    break;
-                }
-            } 
-            return existeciaCategoria;
+console.log("2)-------------------existeCategoria-------------------");
+const existeCategoria = (categoria, productos) => {
+    let existeciaCategoria = false;
+    for (let producto of productos) {
+        if (producto.categoria.includes(categoria)) {
+            existeciaCategoria = true;
+            break;
         }
-    
+    }
+    return existeciaCategoria;
+}
 
-    console.log (`La categoria Tecnologia ${(existeCategoria('Tecnologia', productos)? 'Si existe' : 'No existe')}`);
-    console.log (`La categoria Limpieza ${(existeCategoria('Limpieza', productos)? 'Si existe' : 'No existe')}`);
+
+console.log(`La categoria Tecnologia ${(existeCategoria('Tecnologia', productos) ? 'Si existe' : 'No existe')}`);
+console.log(`La categoria Limpieza ${(existeCategoria('Limpieza', productos) ? 'Si existe' : 'No existe')}`);
 
 //alternativa con metodo some
- const existeCategoria1 = (categoria, productos) =>
-        productos.some(producto => producto.categoria.includes(categoria))
+const existeCategoria1 = (categoria, productos) =>
+    productos.some(producto => producto.categoria.includes(categoria))
 
-console.log (`La categoria Tecnologia ${(existeCategoria1('Tecnologia', productos)? 'Si existe desde el metodo some' : 'No existe desde el metodo some')}`);
-console.log (`La categoria Limpieza ${(existeCategoria1('Limpieza', productos)? 'Si existe desde el metodo some' : 'No existe desde el metodo some')}`);
+console.log(`La categoria Tecnologia ${(existeCategoria1('Tecnologia', productos) ? 'Si existe desde el metodo some' : 'No existe desde el metodo some')}`);
+console.log(`La categoria Limpieza ${(existeCategoria1('Limpieza', productos) ? 'Si existe desde el metodo some' : 'No existe desde el metodo some')}`);
 
 /* 
-   3) Alternativa con metodo filter
-    const obtenerProductoEntreRangoPrecios = (minimo, maximo, productos) => 
-        productos.filter(producto => producto.precio >= min && producto.precio <= max;
-    }; */
-
-    let maximo  = 5000;
-    let minimo = 1000;
-    const obtenerProdcutoEntreRangoPrecios = (min, max, productos) => {
-        const arrayProductosRango = [];
-        for (let producto of productos){
-            if (producto.precio >= min && producto.precio <= max){
-                arrayProductosRango.push(producto);
-            }
-        }
-        return arrayProductosRango;
-    }
-    const mostrarProductosEntreRangosPrecios = arrayProductosRango =>{
-        console.log(`Los productos entre el rango de precios son: `);
-        for (let producto of arrayProductosRango){
-            console.log(`${producto.titulo} con un precio de: ${producto.precio}`);
-        }
-    }
-
-    let arrayProductosRango = obtenerProdcutoEntreRangoPrecios(minimo, maximo, productos);
-    mostrarProductosEntreRangosPrecios(arrayProductosRango);
-
-
-
-   /* 4) alternativa con metodo filter  
-   const obtenerProductoCercaSinStock = (limite, productos) => productos.filter(producto => producto.stock <= limite);
-    
+   3) 
  */
-
-   let limiteStock = 20
-    const obtenerProductoCercaSinStock = (limite, productos) =>{
-        const arrayProductosLimiteStock = []
-        for (let producto of productos){
-            if (producto.stock <= limite){
-                arrayProductosLimiteStock.push(producto);
-            }
-        }
-        return arrayProductosLimiteStock;
-    }
-
-    const mostrarProductosCercaSinStock = (arrayProductosLimiteStock, limiteStock) =>{
-        console.log(`Los productos con stock menor o cerca a ${limiteStock} son: `);
-        for (let producto of arrayProductosLimiteStock){
-            console.log(`${producto.titulo} con un stock de: ${producto.stock}`);
+console.log("3)----------obtenerProductoEntreRangoPrecios--------------");
+let maximo = 5000;
+let minimo = 1000;
+const obtenerProdcutoEntreRangoPrecios = (min, max, productos) => {
+    const arrayProductosRango = [];
+    for (let producto of productos) {
+        if (producto.precio >= min && producto.precio <= max) {
+            arrayProductosRango.push(producto);
         }
     }
-    let arrayProductosLimiteStock =(obtenerProductoCercaSinStock(limiteStock, productos));
-    mostrarProductosCercaSinStock(arrayProductosLimiteStock, limiteStock);
-    
-    /* 5) alternativa con metodo reduce 
-    const obtenerEstimadoVentaBruta1 = productos => productos.reduce((acumulador, producto) => acumulador + producto.precio * producto.stock, 0);
-    */
-    const obtenerEstimadoVentaBruta = productos =>{
-        let resultado;
-        for (let producto of productos){
-            resultado =+ producto.precio * producto.stock;
-         }
-         return resultado;
+    return arrayProductosRango;
+}
+const mostrarProductosEntreRangosPrecios = arrayProductosRango => {
+    console.log(`Los productos entre el rango de precios son: `);
+    for (let producto of arrayProductosRango) {
+        console.log(`${producto.titulo} con un precio de: ${producto.precio}`);
     }
-    
-    console.log(` El total de venta bruta estimada: $${obtenerEstimadoVentaBruta(productos)}`);
+}
+
+let arrayProductosRango = obtenerProdcutoEntreRangoPrecios(minimo, maximo, productos);
+mostrarProductosEntreRangosPrecios(arrayProductosRango);
+
+//Alternativa con metodo filter
+const obtenerProductoEntreRangoPrecios = (min, max, productos) => 
+        productos.filter(producto => producto.precio >= min && producto.precio <= max);
+let arrayProductosRango1 = obtenerProductoEntreRangoPrecios(minimo, maximo, productos);
+console.log("----------------desde el metodo filter");
+mostrarProductosEntreRangosPrecios(arrayProductosRango1);
+
+
+/* 4) 
+*/
+console.log("4)-----------obtenerProductoCercaSinStock---------------");
+let limiteStock = 20
+const obtenerProductoCercaSinStock = (limite, productos) => {
+    const arrayProductosLimiteStock = []
+    for (let producto of productos) {
+        if (producto.stock <= limite) {
+            arrayProductosLimiteStock.push(producto);
+        }
+    }
+    return arrayProductosLimiteStock;
+}
+
+const mostrarProductosCercaSinStock = (arrayProductosLimiteStock, limiteStock) => {
+    console.log(`Los productos con stock menor o cerca a ${limiteStock} son: `);
+    for (let producto of arrayProductosLimiteStock) {
+        console.log(`${producto.titulo} con un stock de: ${producto.stock}`);
+    }
+}
+let arrayProductosLimiteStock = (obtenerProductoCercaSinStock(limiteStock, productos));
+mostrarProductosCercaSinStock(arrayProductosLimiteStock, limiteStock);
+
+//alternativa con metodo filter  
+const obtenerProductoCercaSinStock1 = (limite, productos) => productos.filter(producto => producto.stock <= limite);
+
+let arrayProductosLimiteStock1 = (obtenerProductoCercaSinStock(limiteStock, productos));
+console.log("-------------Desde el metodo filter");
+mostrarProductosCercaSinStock(arrayProductosLimiteStock1, limiteStock);
+ 
+
+/* 5) 
+*/
+console.log("5)-----------obtenerEstimadoVentaBruta--------------");
+const obtenerEstimadoVentaBruta = productos => {
+    let resultado= 0;
+    for (let producto of productos) {
+        resultado += producto.precio * producto.stock;
+    }
+    return resultado;
+}
+
+console.log(`El total de venta bruta estimada: $${obtenerEstimadoVentaBruta(productos)}`);
+
+//alternativa con metodo reduce 
+const obtenerEstimadoVentaBruta1 = productos => productos.reduce((acumulador, producto) => acumulador + producto.precio * producto.stock, 0);
+
+console.log(`El total de venta bruta estimada: $${obtenerEstimadoVentaBruta1(productos)} desde el metodo reduce`);
