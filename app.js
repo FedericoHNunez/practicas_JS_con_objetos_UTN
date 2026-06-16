@@ -1,3 +1,4 @@
+
 const productos = [
     {
         id: 1,
@@ -92,14 +93,14 @@ console.log(`El producto id ${idProducto} es: ${mostrarProducto(productoId1)} de
  */
 console.log("2)-------------------existeCategoria-------------------");
 const existeCategoria = (categoria, productos) => {
-    let existeciaCategoria = false;
+    let existenciaCategoria = false;
     for (let producto of productos) {
         if (producto.categoria.includes(categoria)) {
-            existeciaCategoria = true;
+            existenciaCategoria = true;
             break;
         }
     }
-    return existeciaCategoria;
+    return existenciaCategoria;
 }
 
 
@@ -119,7 +120,7 @@ console.log(`La categoria Limpieza ${(existeCategoria1('Limpieza', productos) ? 
 console.log("3)----------obtenerProductoEntreRangoPrecios--------------");
 let maximo = 5000;
 let minimo = 1000;
-const obtenerProdcutoEntreRangoPrecios = (min, max, productos) => {
+const obtenerProductoEntreRangoPrecios = (min, max, productos) => {
     const arrayProductosRango = [];
     for (let producto of productos) {
         if (producto.precio >= min && producto.precio <= max) {
@@ -135,13 +136,13 @@ const mostrarProductosEntreRangosPrecios = arrayProductosRango => {
     }
 }
 
-let arrayProductosRango = obtenerProdcutoEntreRangoPrecios(minimo, maximo, productos);
+let arrayProductosRango = obtenerProductoEntreRangoPrecios(minimo, maximo, productos);
 mostrarProductosEntreRangosPrecios(arrayProductosRango);
 
 //Alternativa con metodo filter
-const obtenerProductoEntreRangoPrecios = (min, max, productos) => 
+const obtenerProductoEntreRangoPrecios1 = (min, max, productos) => 
         productos.filter(producto => producto.precio >= min && producto.precio <= max);
-let arrayProductosRango1 = obtenerProductoEntreRangoPrecios(minimo, maximo, productos);
+let arrayProductosRango1 = obtenerProductoEntreRangoPrecios1(minimo, maximo, productos);
 console.log("----------------desde el metodo filter");
 mostrarProductosEntreRangosPrecios(arrayProductosRango1);
 
