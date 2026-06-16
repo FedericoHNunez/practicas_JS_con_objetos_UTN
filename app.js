@@ -72,16 +72,17 @@ const productos = [
 console.log("1)--------------------obtenerPorId--------------------");
 let idProducto = 2
 const obtenerPorId = (id, productos) => {
-    let resultado;
     for (let producto of productos) {
-        producto.id === id ? resultado = producto : null;
+        if (producto.id === id) {
+            return producto;
+        }
     }
     return resultado;
 }
-const mostrarProducto = producto => `${producto.titulo} con un de precio: ${producto.precio} y hay un de stock: ${producto.stock} unidades`;
+const mostrarProducto = producto => `${producto.titulo} con un de precio: ${producto.precio} y hay un stock de : ${producto.stock} unidades`;
 
-let productoId = obtenerPorId(idProducto, productos);
-console.log(`El producto id ${idProducto} es: ${mostrarProducto(productoId)}`);
+let productoIdEncontrado = obtenerPorId(idProducto, productos);
+console.log(`El producto id ${idProducto} es: ${mostrarProducto(productoIdEncontrado)}`);
 
 //Alternativa con metodo find
 const obtenerPorId1 = (id, productos) => productos.find(producto => producto.id === id)
@@ -93,14 +94,13 @@ console.log(`El producto id ${idProducto} es: ${mostrarProducto(productoId1)} de
  */
 console.log("2)-------------------existeCategoria-------------------");
 const existeCategoria = (categoria, productos) => {
-    let existenciaCategoria = false;
     for (let producto of productos) {
         if (producto.categoria.includes(categoria)) {
             existenciaCategoria = true;
             break;
         }
     }
-    return existenciaCategoria;
+    return false;
 }
 
 
